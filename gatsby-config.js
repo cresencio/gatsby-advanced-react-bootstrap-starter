@@ -25,6 +25,13 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-lodash",
     {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require("sass"),
+        includePaths: ["./src/styles"]
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "assets",
