@@ -7,10 +7,10 @@ import Disqus from "../components/Disqus/Disqus";
 import PostTags from "../components/PostTags/PostTags";
 import SocialLinks from "../components/SocialLinks/SocialLinks";
 import SEO from "../components/SEO/SEO";
-import Footer from "../components/Footer/Footer";
 import config from "../../data/SiteConfig";
 import "./b16-tomorrow-dark.scss";
 import "./post.scss";
+import { Row, Col } from 'react-bootstrap';
 
 export default function PostTemplate({ data, pageContext }) {
   const { slug } = pageContext;
@@ -22,13 +22,13 @@ export default function PostTemplate({ data, pageContext }) {
 
   return (
     <Layout>
-      <div>
+      <Row>
         <Helmet>
           <title>{`${post.title} | ${config.siteTitle}`}</title>
         </Helmet>
         <SEO postPath={slug} postNode={postNode} postSEO />
-        <div>
-          <h1>{post.title}</h1>
+        <Col as="article">
+          <header><h1>{post.title}</h1></header>
           {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
           <div className="post-meta">
@@ -37,9 +37,8 @@ export default function PostTemplate({ data, pageContext }) {
           </div>
           <UserInfo config={config} />
           <Disqus postNode={postNode} />
-          <Footer config={config} />
-        </div>
-      </div>
+        </Col>
+      </Row>
     </Layout>
   );
 }
