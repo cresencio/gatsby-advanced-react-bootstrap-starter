@@ -10,8 +10,8 @@ function Landing({ data }) {
   const postEdges = data.allMarkdownRemark.edges;
   return (
     <Layout>
-      <div className="landing-container">
-        <div className="posts-container">
+      <div className="row landing-container">
+        <div className="col posts-container">
           <Helmet title={config.siteTitle} />
           <SEO />
           <PostListing postEdges={postEdges} />
