@@ -1,10 +1,12 @@
 import React from "react";
 import _ from "lodash";
 import { Link } from "gatsby";
+import { Badge } from 'react-bootstrap';
 
 function PostTags({ tags }) {
   return (
     <div className="post-tag-container">
+      {tags ? "Tags: " : ''}
       {tags &&
         tags.map((tag) => (
           <Link
@@ -12,7 +14,9 @@ function PostTags({ tags }) {
             style={{ textDecoration: "none" }}
             to={`/tags/${_.kebabCase(tag)}`}
           >
-            <button type="button">{tag}</button>
+            <Badge pill variant="dark">
+              {tag}
+            </Badge>{' '}
           </Link>
         ))}
     </div>
