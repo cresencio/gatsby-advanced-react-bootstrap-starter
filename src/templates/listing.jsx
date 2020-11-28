@@ -6,6 +6,7 @@ import PostListing from "../components/PostListing/PostListing";
 import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
 import "./listing.scss";
+import { Row, Col, Pagination } from 'react-bootstrap';
 
 function Listing({ pageContext, data }) {
   function renderPaging() {
@@ -16,21 +17,23 @@ function Listing({ pageContext, data }) {
     const isLastPage = currentPageNum === pageCount;
 
     return (
-      <div className="paging-container">
-        {!isFirstPage && <Link to={prevPage}>Previous</Link>}
+      <Pagination size="lg" className="justify-content-center">
+        {!isFirstPage && <Pagination.Prev><Link to={prevPage}>Previous</Link></Pagination.Prev>}
         {[...Array(pageCount)].map((_val, index) => {
           const pageNum = index + 1;
           return (
-            <Link
-              key={`listing-page-${pageNum}`}
-              to={pageNum === 1 ? "/" : `/${pageNum}/`}
-            >
-              {pageNum}
-            </Link>
+            <Pagination.Item>
+              <Link
+                key={`listing-page-${pageNum}`}
+                to={pageNum === 1 ? "/" : `/${pageNum}/`}
+              >
+                {pageNum}
+              </Link>
+            </Pagination.Item>
           );
         })}
-        {!isLastPage && <Link to={nextPage}>Next</Link>}
-      </div>
+        {!isLastPage && <Pagination.Next><Link to={nextPage}>Next</Link></Pagination.Next>}
+      </Pagination>
     );
   }
 
@@ -38,14 +41,16 @@ function Listing({ pageContext, data }) {
 
   return (
     <Layout>
-      <div className="listing-container">
-        <div className="posts-container">
+      <Row xs={1}>
+        <Col>
           <Helmet title={config.siteTitle} />
           <SEO />
           <PostListing postEdges={postEdges} />
-        </div>
-        {renderPaging()}
-      </div>
+        </Col>
+        <Col>
+          {renderPaging()}
+        </Col>
+      </Row>
     </Layout>
   );
 }
