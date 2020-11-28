@@ -4,18 +4,28 @@ import { graphql } from "gatsby";
 import Layout from "../layout";
 import PostListing from "../components/PostListing/PostListing";
 import config from "../../data/SiteConfig";
+import { Row, Col, Jumbotron } from 'react-bootstrap';
 
 export default function CategoryTemplate({ pageContext, data }) {
   const { category } = pageContext;
   const postEdges = data.allMarkdownRemark.edges;
   return (
     <Layout>
-      <div className="category-container">
-        <Helmet
+      <Row>
+        <Col>
+          <Helmet
           title={`Posts in category "${category}" | ${config.siteTitle}`}
-        />
-        <PostListing postEdges={postEdges} />
-      </div>
+          />
+          <Row>
+            <Col className="px-0">
+              <Jumbotron>
+                <h1>Posts in category: {category}</h1>
+              </Jumbotron>
+            </Col>
+          </Row>
+          <PostListing postEdges={postEdges} />
+        </Col>
+      </Row>
     </Layout>
   );
 }

@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../layout";
 import PostListing from "../components/PostListing/PostListing";
 import config from "../../data/SiteConfig";
+import { Row, Col, Jumbotron } from 'react-bootstrap';
 
 export default function TagTemplate({ pageContext, data }) {
   const { tag } = pageContext;
@@ -11,8 +12,19 @@ export default function TagTemplate({ pageContext, data }) {
   return (
     <Layout>
       <div className="tag-container">
-        <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
-        <PostListing postEdges={postEdges} />
+      <Row>
+        <Col>
+          <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
+          <Row>
+            <Col className="px-0">
+              <Jumbotron>
+                <h1>Posts in tag: {tag}</h1>
+              </Jumbotron>
+            </Col>
+          </Row>
+          <PostListing postEdges={postEdges} />
+        </Col>
+      </Row>
       </div>
     </Layout>
   );
