@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import { ListGroup } from 'react-bootstrap';
 
 function PostListing({ postEdges }) {
   const postList = [];
@@ -16,16 +17,18 @@ function PostListing({ postEdges }) {
   });
 
   return (
-    <div>
+    <ListGroup variant="flush">
       {
         /* Your post list here. */
         postList.map((post) => (
-          <Link to={post.path} key={post.title}>
-            <h1>{post.title}</h1>
-          </Link>
+          <ListGroup.Item>
+            <Link to={post.path} key={post.title}>
+              <h1>{post.title}</h1>
+            </Link>
+          </ListGroup.Item>
         ))
       }
-    </div>
+    </ListGroup>
   );
 }
 
