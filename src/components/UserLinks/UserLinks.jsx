@@ -1,14 +1,15 @@
 import React from "react";
 import "./UserLinks.scss";
+import {ButtonGroup, Button } from 'react-bootstrap';
 
 function UserLinks({ config, labeled }) {
   function getLinkElements() {
     const { userLinks } = config;
 
     return userLinks.map((link) => (
-      <a href={link.url} key={link.label}>
-        <button type="button">{labeled ? link.label : ""}</button>
-      </a>
+      <Button href={link.url} key={link.label} variant="light">
+        {labeled ? link.label : ""}
+      </Button>
     ));
   }
 
@@ -16,7 +17,7 @@ function UserLinks({ config, labeled }) {
   if (!userLinks) {
     return null;
   }
-  return <div className="user-links">{getLinkElements()}</div>;
+  return <ButtonGroup as="div" size='sm' className="user-links">{getLinkElements()}</ButtonGroup>;
 }
 
 export default UserLinks;
