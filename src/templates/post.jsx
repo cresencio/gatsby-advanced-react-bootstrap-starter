@@ -28,7 +28,11 @@ export default function PostTemplate({ data, pageContext }) {
         </Helmet>
         <SEO postPath={slug} postNode={postNode} postSEO />
         <Col as="article">
-          <header><h1>{post.title}</h1></header>
+          <header>
+            <h1>{post.title}</h1>
+            { (post.cover) ? <img src={post.cover} alt={post.title} className="img-fluid w-100" /> : '' }
+              
+          </header>
           {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
           <div className="post-meta">
