@@ -45,7 +45,7 @@ function SEO({ postNode, postPath, postSEO }) {
     return moment(postNode.frontmatter.date, config.dateFromFormat).toDate();
   };
 
-  image = getImagePath(image);
+  (image) ? image = getImagePath(image) : null;
 
   const datePublished = getPublicationDate();
 
